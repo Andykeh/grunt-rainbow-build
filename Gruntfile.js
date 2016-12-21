@@ -47,7 +47,8 @@ module.exports = function(grunt) {
     //处理引用
     rainbow_use:{
         options:{
-            'static':['script','link'] /*处理的静态资源类型*/
+            'static':['script','link'], /*处理的静态资源类型*/
+            'replace':['../','${STATIC_URI}'] /*自定义替换规则*/
         },
         dist:{
             files:[{

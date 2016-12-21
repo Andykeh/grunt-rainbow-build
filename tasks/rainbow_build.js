@@ -83,7 +83,8 @@ module.exports = function(grunt) {
   /*处理引用*/
   grunt.registerMultiTask('rainbow_use', '资源引用文件处理', function() {
       var options = this.options({
-            'static':['script','link']
+            'static':['script','link'],
+            'replace':[]
           });
 
       this.files.forEach(function(f){
@@ -110,6 +111,8 @@ module.exports = function(grunt) {
                     _file = Base.GetCandidates(src,dist[i])[0];
                     if (!_file || src === '/') {
                         return match;
+                    }else{
+                        _file = _file.replace(options.replace[0],options.replace[1]);
                     }
 
                     return match.replace(src, _file);

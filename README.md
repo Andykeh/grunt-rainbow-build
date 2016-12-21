@@ -63,11 +63,14 @@ grunt.initConfig({
 });
 ```
 ##处理页面引入资源任务 "rainbow_use"
+
+
 ```js
 grunt.initConfig({
 rainbow_use:{
         options:{
-            'static':['script','link'] /*处理的静态资源类型*/
+            'static':['script','link'], /*处理的静态资源类型*/
+            'replace':['../','${STATIC_URI}'] /*自定义替换规则*/
         },
         dist:{
             files:[{
@@ -81,6 +84,13 @@ rainbow_use:{
     }
 })
 ```
+>html引入的资源路径请设置为相对路径，动态路径无法识别，通过replace设置规则替换最终路径
+
+>test/html目录的html文件将拷贝到test/htmldist目录
+
+>test/js/xx.js 将会处理为 ${STATIC_URI}test/jsdist/xxxx.xx.js 
+
+
 ##配置参考
 
 ```js
@@ -125,7 +135,8 @@ module.exports = function(grunt) {
     //处理引用
     rainbow_use:{
         options:{
-            'static':['script','link'] /*处理的静态资源类型*/
+            'static':['script','link'], /*处理的静态资源类型*/
+            'replace':['../','${STATIC_URI}'] /*输出资源链接替换规则*/
         },
         dist:{
             files:[{

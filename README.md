@@ -44,9 +44,9 @@ clean: {
 ```js
 grunt.initConfig({
   rainbow_hash: {
-      options: {
-                'hashMap':'hash_map/map.js' /*输出map文件*/
-        },
+      options: {        
+         'hashLength':8 /*散列值长度*/         
+      },
       your_target: {
         options: {
           'fileType':'js',  /*文件类型*/
@@ -60,6 +60,22 @@ grunt.initConfig({
         }]
       }
   }
+});
+```
+
+##输出map文件任务
+```js
+grunt.initConfig({
+ rainbow_out_map:{
+        options:{
+            filePath:'test/map.js', /*map文件路径*/
+            'hashName' :true,       /*是否散列文件名*/          
+            'hashLength':8          /*散列值长度*/ 
+        },
+        dist:{
+    
+        }
+    }
 });
 ```
 ##处理页面引入资源任务 "rainbow_use"
@@ -84,11 +100,8 @@ rainbow_use:{
     }
 })
 ```
->html引入的资源路径请设置为相对路径，动态路径无法识别，通过replace设置规则替换最终路径
-
->test/html目录的html文件将拷贝到test/htmldist目录
-
->test/js/xx.js 将会处理为 ${STATIC_URI}test/jsdist/xxxx.xx.js 
+>html引入的资源路径请设置为相对路径，动态路径无法识别，可以通过replace设置规则替换最终路径，
+比如以上配置test/js/xx.js 最终将会处理为 ${STATIC_URI}test/jsdist/xxxx.xx.js 
 
 
 ##配置参考
@@ -131,6 +144,15 @@ module.exports = function(grunt) {
             src:['**/*.css']
         }]
       }
+    },
+    //输出map
+     rainbow_out_map:{
+        options:{
+            filePath:'test/map.js'
+        },
+        dist:{
+
+        }
     },
     //处理引用
     rainbow_use:{

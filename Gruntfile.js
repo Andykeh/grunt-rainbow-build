@@ -16,9 +16,9 @@ module.exports = function(grunt) {
 
     // 文件名散列命名
     rainbow_hash: {
-        options: {
-            'hashMap':'hash_map/map.js' /*输出map文件*/
-        },
+      options: {
+         'hashLength':8 /*散列值长度*/
+      },
       hash_js: {
         options: {
           'fileType':'js',
@@ -44,6 +44,15 @@ module.exports = function(grunt) {
         }]
       }
     },
+    //输出map
+      rainbow_out_map:{
+        options:{
+            filePath:'test/map.js'
+        },
+        dist:{
+
+        }
+    },
     //处理引用
     rainbow_use:{
         options:{
@@ -64,6 +73,6 @@ module.exports = function(grunt) {
 
   grunt.loadTasks('tasks');
   grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.registerTask('default', ['clean', 'rainbow_hash', 'rainbow_use']);
+  grunt.registerTask('default', ['clean', 'rainbow_hash', 'rainbow_use','rainbow_out_map']);
 
 };

@@ -73,7 +73,7 @@ module.exports = function(grunt) {
                     grunt.file.copy(filePath, _outPath );
                     grunt.log.write('copy:',filePath + ' ').ok(_outPath);
                     hashMap[options.fileType][Path.basename(filePath)] = _renamed;
-                    console.log(76,options.fileType)
+
                 });
 
             /*dist目录*/
@@ -87,7 +87,6 @@ module.exports = function(grunt) {
     /*输出map文件*/
     grunt.registerMultiTask('rainbow_out_map', '输出map文件', function() {
 
-        console.log(89,hashMap)
         var options = this.options({
                 'hashName' :true,
                 'hashAlgorithm':'md5',
